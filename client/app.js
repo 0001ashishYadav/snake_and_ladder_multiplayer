@@ -6,6 +6,32 @@ socket.on("info", (msg) => {
 
 socket.emit("info", "hello from client");
 
+const path = {};
+
+// This code generates a zigzag pattern of coordinates in a 10x10 grid
+
+let place = 1;
+let isIncreased = true;
+for (let i = 9; i >= 0; i--) {
+  if (isIncreased) {
+    for (let j = 0; j <= 9; j++) {
+      path[place++] = {
+        x: j,
+        y: i,
+      };
+    }
+  } else {
+    for (let j = 9; j >= 0; j--) {
+      path[place++] = {
+        x: j,
+        y: i,
+      };
+    }
+  }
+
+  isIncreased = !isIncreased;
+}
+
 const canvasSize = 600;
 const blockSize = canvasSize / 10; // Assuming a 10x10 grid for the game
 
@@ -55,3 +81,5 @@ for (let i = 1; i < 10; i++) {
 
 drawPawn(1, 1, "green");
 drawPawn(3, 0, "red");
+
+console.log(path);

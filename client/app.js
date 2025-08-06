@@ -32,6 +32,17 @@ for (let i = 9; i >= 0; i--) {
   isIncreased = !isIncreased;
 }
 
+const snake = [
+  { m: 99, t: 5 },
+  { m: 93, t: 5 },
+  { m: 95, t: 10 },
+];
+
+const ladder = [
+  { m: 6, t: 90 },
+  { m: 6, t: 12 },
+];
+
 const canvasSize = 600;
 const blockSize = canvasSize / 10; // Assuming a 10x10 grid for the game
 

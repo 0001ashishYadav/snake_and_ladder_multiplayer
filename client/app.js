@@ -34,6 +34,15 @@ const drawLine = (x1, y1, x2, y2) => {
   ctx.stroke();
 };
 
+const drawPawn = (x, y, color) => {
+  drawCircle(
+    blockSize / 2 + blockSize * x,
+    blockSize / 2 + blockSize * y,
+    blockSize / 2 - blockSize / 6,
+    color
+  );
+};
+
 // horizontal lines to create the grid
 for (let i = 1; i < 10; i++) {
   drawLine(blockSize * i, 0, blockSize * i, canvasSize);
@@ -44,9 +53,5 @@ for (let i = 1; i < 10; i++) {
   drawLine(0, blockSize * i, canvasSize, blockSize * i);
 }
 
-drawCircle(
-  blockSize / 2 + blockSize * 2,
-  blockSize / 2 + blockSize * 1,
-  blockSize / 2 - blockSize / 5,
-  "red"
-);
+drawPawn(1, 1, "green");
+drawPawn(3, 0, "red");

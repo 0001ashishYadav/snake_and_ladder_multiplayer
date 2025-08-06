@@ -88,9 +88,9 @@ webpImage.onload = () => {
 };
 
 const playBtnEle = document.getElementById("play");
+
 // playBtnEle.disabled = true
-playBtnEle.style.backgroundColor = "#fcc";
-playBtnEle.style.color = "#000";
+
 playBtnEle.addEventListener("click", () => {
   socket.emit("play", "");
 });

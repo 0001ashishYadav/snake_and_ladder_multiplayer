@@ -1,16 +1,52 @@
 const socket = io("ws://localhost:5000");
 
-const canvasSize = 600;
-const boxSize = canvasSize / 10; // Assuming a 10x10 grid for the game
-
-const canvas = document.getElementById("gameCanvas");
-canvas.width = canvasSize;
-canvas.height = canvasSize;
-canvas.style.backgroundImage = "url('../map.jpg')";
-const ctx = canvas.getContext("2d");
-
 socket.on("info", (msg) => {
   console.log(msg);
 });
 
 socket.emit("info", "hello from client");
+
+const canvasSize = 600;
+const blockSize = canvasSize / 10; // Assuming a 10x10 grid for the game
+
+const canvas = document.getElementById("gameCanvas");
+canvas.width = canvasSize;
+canvas.height = canvasSize;
+// canvas.style.backgroundImage = "url('../map.jpg')";
+canvas.style.backgroundColor = "lightgreen";
+const ctx = canvas.getContext("2d");
+
+const drawCircle = (x, y, r, fillColor) => {
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, 2 * Math.PI);
+  ctx.fillStyle = fillColor;
+  ctx.fill();
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "blue";
+  ctx.stroke();
+};
+
+const drawLine = (x1, y1, x2, y2) => {
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.lineWidth = 1;
+  ctx.stroke();
+};
+
+// horizontal lines to create the grid
+for (let i = 1; i < 10; i++) {
+  drawLine(blockSize * i, 0, blockSize * i, canvasSize);
+}
+
+// vertical lines to create the grid
+for (let i = 1; i < 10; i++) {
+  drawLine(0, blockSize * i, canvasSize, blockSize * i);
+}
+
+drawCircle(
+  blockSize / 2 + blockSize * 2,
+  blockSize / 2 + blockSize * 1,
+  blockSize / 2 - blockSize / 5,
+  "red"
+);

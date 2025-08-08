@@ -1,5 +1,7 @@
 const socket = io("ws://localhost:5000");
 
+const userName = prompt("Enter your name");
+
 socket.on("info", (msg) => {
   console.log(msg);
 });
@@ -94,6 +96,8 @@ const playBtnEle = document.getElementById("play");
 playBtnEle.addEventListener("click", () => {
   socket.emit("play", "");
 });
+
+socket.emit("join", userName);
 
 socket.on("play", (msg) => {
   playBtnEle.innerHTML = msg;
